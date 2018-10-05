@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 RSpec.feature "Csv uploads", type: :feature do
-    let(:user) { FactoryBot.create(:user) }
+  let(:admin) { FactoryBot.create(:admin_user) }
   scenario 'let user upload products from .csv file' do
-  login_as(user, scope: :spree_user)
-     # sign_in_as! create(:admin_user)
-    # log in
-    # go to admin page
-    # go to products page
-    # click 'Import from .csv'
-    # selection pops up
-    # hit 'submit'
-    # it should redirect to orders page
-    # database should have a few extra items
+    sign_in_as! admin
+    visit '/admin/products'
+    expect(page.body).to include('Import from .csv')
+    attach_file('Image', '/path/to/image.jpg')
+    expect do
+      click_on('Import from .csv')
+    end.to inclrease { Spree::Product.count }.by(3)
+    expect(page).to have_current_path('/admin/products')
   end
 end

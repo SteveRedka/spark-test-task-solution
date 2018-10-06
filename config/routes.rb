@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  post 'csv_batch_process', to: 'csv#batch_process'
+  namespace 'csv' do
+    post 'process_products', to: 'csv#process_products'
+  end
 end

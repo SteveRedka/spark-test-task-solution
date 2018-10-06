@@ -1,0 +1,4 @@
+<%= form_tag('/csv_batch_process' , method: :post, multipart: true, class: 'csv-form') do %>
+   <%= file_field_tag 'csv-file' %>
+   <%= submit_tag 'Import from .csv', class: 'btn-success' %>
+<% end %>

@@ -5,16 +5,7 @@
 <% content_for :page_actions do %>
   <%= button_link_to Spree.t(:new_product), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_product' } %>
   <% end if can?(:create, Spree::Product) %>
-
-
-<%= form_tag('/csv_batch_process' , method: :post, class: 'csv-form') do %>
-   <%= file_field_tag 'csv-file' %>
-   <%= submit_tag 'Import from .csv', class: 'btn-success' %>
-<% end %>
-
-
-
-
+<%= render 'spree/shared/import_from_csv' %>
 <% content_for :table_filter do %>
   <div data-hook="admin_products_sidebar">
 

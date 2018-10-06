@@ -10,7 +10,7 @@ module Products
     end
 
     def call
-      return if empty_row?(@row)
+      return if blank_row?(@row)
 
       categories = Spree::Taxonomy.find_or_create_by(name: 'Categories')
       category = categories.taxons.find_or_create_by(name: @row[:category])
@@ -36,8 +36,8 @@ module Products
 
     private
 
-    def empty_row?(row)
-      row[:name].empty?
+    def blank_row?(row)
+      row[:name].blank?
     end
   end
 end

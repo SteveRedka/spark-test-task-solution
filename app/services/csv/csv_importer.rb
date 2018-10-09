@@ -13,6 +13,8 @@ module Csv
       CSV.foreach(@file, headers: :first_row, col_sep: ';') do |row|
         Products::ProductCreator.new(row.to_h.symbolize_keys).call
       end
+
+      true
     end
   end
 end
